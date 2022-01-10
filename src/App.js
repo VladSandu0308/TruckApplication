@@ -3,12 +3,10 @@ import './App.css';
 import { Map } from "@esri/react-arcgis";
 import Truck from './Truck.js';
 import Navbar from './Navbar';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Home from './Home';
+import MapMenu from './MapMenu';
+
 
 
 function App() {
@@ -18,15 +16,17 @@ function App() {
     const title = "Truck"
 
   return (
-    <div>
-    <div> <Navbar   /></div>
-    <div style={{ width: '100vw', height: '90vh'}} className="App">
-        <Map 
-            viewProperties={{center: [26, 45]}}>
-            <Truck x={26} y={45}/>
-            </Map>
-    </div>
-    </div>
+
+  <div className="App">
+  <Navbar />
+  <div className="content">
+    <Routes>
+      <Route exact path="/" element = {<Home/>}/>
+      <Route path="/map" element = {<MapMenu/>}/>
+
+    </Routes>
+  </div>
+</div>
   );
 }
 
