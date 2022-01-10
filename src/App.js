@@ -6,6 +6,7 @@ import Navbar from './Navbar';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './Home';
 import MapMenu from './MapMenu';
+import Login from './Login'
 
 
 
@@ -23,6 +24,7 @@ function App() {
     <Routes>
       <Route exact path="/" element = {<Home/>}/>
       <Route path="/map" element = {<MapMenu/>}/>
+      <Route path="/login" element = {<Login/>}/>
 
     </Routes>
   </div>
