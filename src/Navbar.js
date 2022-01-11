@@ -15,12 +15,16 @@ const Navbar  = () => {
                     backgroundColor: '#04395E',
                     borderRadius: '8px'
                 }} > Map </a>
-                  <a href="/login" style={{
+                  <a href="/register" style={{
                     color: "white",
                     backgroundColor: '#04395E',
                     borderRadius: '8px'
-                }} > Login </a>
-                
+                }} > Register </a>
+                   <a href="/login" style={{
+                    color: "white",
+                    backgroundColor: '#04395E',
+                    borderRadius: '8px'
+                }} > Login </a>               
                 
                 
             </div>

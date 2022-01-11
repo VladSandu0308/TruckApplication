@@ -5,7 +5,7 @@ const Login = () => {
     return (
         <>
         <div className="login-wrapper">
-      <h1>Please Log In</h1>
+      <h1>Please log in</h1>
       <form>
         <label>
           <p>Username</p>
@@ -16,7 +16,7 @@ const Login = () => {
           <input type="password" />
         </label>
         <div>
-          <button type="submit">Submit</button>
+          <button type="submit">Login</button>
         </div>
       </form>
     </div>
