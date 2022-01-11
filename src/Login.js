@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import './Login.css';
+import MapMenu from './MapMenu';
 
 async function loginUser(credentials) {
   return fetch('http://localhost:8080/login', {
@@ -32,7 +33,7 @@ const Login = () => {
       
       <>
       {token != 0 ? (
-        <h1>You already logged in!</h1>
+        <MapMenu/>
       ) : (
         <div className="login-wrapper">
           <h1>Please Log In</h1>
