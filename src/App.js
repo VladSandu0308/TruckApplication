@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { Map } from "@esri/react-arcgis";
@@ -15,7 +16,7 @@ function App() {
     const { ApiKey } = require("@esri/arcgis-rest-auth");
     const { addFeatures, updateFeatures, deleteFeatures } = require("@esri/arcgis-rest-feature-layer");
     const title = "Truck"
-
+    
   return (
 
   <div className="App">
@@ -25,6 +26,7 @@ function App() {
       <Route exact path="/" element = {<Home/>}/>
       <Route path="/map" element = {<MapMenu/>}/>
       <Route path="/login" element = {<Login/>}/>
+      
 
     </Routes>
   </div>
