@@ -8,6 +8,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './Home';
 import MapMenu from './MapMenu';
 import Login from './Login'
+import Register from './Register';
 
 
 
@@ -25,6 +26,7 @@ function App() {
     <Routes>
       <Route exact path="/" element = {<Home/>}/>
       <Route path="/map" element = {<MapMenu/>}/>
+      <Route path="/register" element = {<Register/>}/>
       <Route path="/login" element = {<Login/>}/>
       
 
