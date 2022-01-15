@@ -1,34 +1,53 @@
 import { Outlet, Link } from "react-router-dom";
 
-const Navbar  = () => {
+const Navbar  = ({ token }) => {
     return (  
-        <nav className="navbar" >
-            <h1> TruckApp </h1>
-            <div className="links">
-                <a href="/" style={{
-                    color: "white",
-                    backgroundColor: '#04395E',
-                    borderRadius: '8px'
-                }} > Home </a>
-                <a href="/map" style={{
-                    color: "white",
-                    backgroundColor: '#04395E',
-                    borderRadius: '8px'
-                }} > Map </a>
-                  <a href="/register" style={{
-                    color: "white",
-                    backgroundColor: '#04395E',
-                    borderRadius: '8px'
-                }} > Register </a>
-                   <a href="/login" style={{
-                    color: "white",
-                    backgroundColor: '#04395E',
-                    borderRadius: '8px'
-                }} > Login </a>               
-                
-                
-            </div>
-        </nav>
+        <>
+            {
+                (token) ? (
+                    <nav className="navbar" >
+                        <h1> TruckApp </h1>
+                        <div className="links">
+                            <a href="/" style={{
+                                color: "white",
+                                backgroundColor: '#04395E',
+                                borderRadius: '8px'
+                            }} > Home </a>
+                            <a href="/map" style={{
+                                color: "white",
+                                backgroundColor: '#04395E',
+                                borderRadius: '8px'
+                            }} > Map </a>
+                            <a href="/logout" style={{
+                                color: "white",
+                                backgroundColor: '#04395E',
+                                borderRadius: '8px'
+                            }} > Logout </a>              
+                        </div>
+                    </nav>
+                ) : (
+                    <nav className="navbar" >
+                        <h1> TruckApp </h1>
+                        <div className="links">
+                            <a href="/register" style={{
+                                color: "white",
+                                backgroundColor: '#04395E',
+                                borderRadius: '8px'
+                            }} > Register </a>
+                            <a href="/login" style={{
+                                color: "white",
+                                backgroundColor: '#04395E',
+                                borderRadius: '8px'
+                            }} > Login </a>
+                                            
+                            
+                            
+                        </div>
+                    </nav>
+                )
+            }
+        </>
+        
 
     );
 }
