@@ -43,6 +43,7 @@ function App() {
         <Route path="/login" element = {<Login setToken={setToken} token={token} setRole={setRole} setName={setName}/>}/>
         <Route path="/account" element = {<Account setToken={setToken} token={token} role={role} name={name}/>}/>
         <Route path="/logout" element = {<Logout setToken={setToken} token={token}/>}/>
+        <Route path="/requests" element = {<Requests/>}/>
 
       </Routes>
     </div>
