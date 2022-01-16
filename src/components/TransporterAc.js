@@ -1,6 +1,57 @@
-import React from 'react'
+import React, {useState} from 'react'
+
+async function register(credentials) {
+  return fetch('http://localhost:8080/transporterOffer', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(credentials)
+  })
+    .then(data => data.json())
+ }
 
 const TransporterAc = ({name}) => {
+
+  const [dep_date, setDepdate] = useState();
+  const [dep_place, setDepplace] = useState();
+  const [arival_date, setArivaldate] = useState();
+  const [arival_place, setArivalplace] = useState();
+  const [truck_type, setTrucktype] = useState();
+  const [volume, setVolume] = useState();
+  const [weight, setWeight] = useState();
+  const [length, setLength] = useState();
+  const [width, setWidth] = useState();
+  const [height, setHeight] = useState();
+  const [empty_price, setEmptyprice] = useState();
+  const [full_price, setFullprice] = useState();
+  const [token, setToken] = useState(0);
+  const user = name
+
+  const handleSubmit = async e => {
+    e.preventDefault();
+        const retBody = await register({
+          dep_date,
+          dep_place,
+          arival_date,
+          arival_place,
+          truck_type,
+          volume,
+          weight,
+          length,
+          width,
+          height,
+          empty_price,
+          full_price,
+          user
+
+        });
+
+        setToken(retBody);
+
+}
+
+
   return (
         <div class = "container">
           <div class="row">
@@ -19,39 +70,39 @@ const TransporterAc = ({name}) => {
                 <div class = "col-md-4" >
                   <div className="card" style ={{backgroundColor: '#57abd1', padding: '15px'}}>
                   <h5 class="card-title" style ={{marginBottom:'20px'}}> Inregistrare oferta </h5>
-                      <form class="row g-3">
+                      <form class="row g-3" onSubmit={handleSubmit}>
                         <div class="col-md-6">
-                          <input type="text" class="form-control" id="1" placeholder="Data plecarii"/>
+                          <input type="text" class="form-control" id="1" placeholder="Data plecarii"  onChange={e => setDepdate(e.target.value)}/>
                         </div>
                         <div class="col-md-6">
-                          <input type="text" class="form-control" id="2"  placeholder="Locul plecarii" />
+                          <input type="text" class="form-control" id="2"  placeholder="Locul plecarii" onChange={e => setDepplace(e.target.value)} />
                         </div>
                         <div class="col-md-6">
-                          <input type="text" class="form-control" id="3" placeholder="Data destinatiei"/>
+                          <input type="text" class="form-control" id="3" placeholder="Data destinatiei" onChange={e => setArivaldate(e.target.value)}/>
                         </div>
                         <div class="col-md-6">
-                          <input type="text" class="form-control" id="4" placeholder="Locul destinatiei"/>
+                          <input type="text" class="form-control" id="4" placeholder="Locul destinatiei" onChange={e => setArivalplace(e.target.value)}/>
                         </div>
                         <div class="col-md-6">
-                          <input type="text" class="form-control" id="5" placeholder="Volum (m3)"/>
+                          <input type="text" class="form-control" id="5" placeholder="Volum (m3)" onChange={e => setVolume(e.target.value)} />
                         </div>
                         <div class="col-md-6">
-                          <input type="text" class="form-control" id="6" placeholder="Greutate (tone)"/>
+                          <input type="text" class="form-control" id="6" placeholder="Greutate (tone)" onChange={e => setWeight(e.target.value)} />
                         </div>
                         <div class="col-md-4">
-                          <input type="text" class="form-control" id="7" placeholder="Lungime (m)"/>
+                          <input type="text" class="form-control" id="7" placeholder="Lungime (m)" onChange={e => setLength(e.target.value)}/>
                         </div>
                         <div class="col-md-4">
-                          <input type="text" class="form-control" id="8" placeholder="Latime (m)"/>
+                          <input type="text" class="form-control" id="8" placeholder="Latime (m)" onChange={e => setWidth(e.target.value)}/>
                         </div>
                         <div class="col-md-4">
-                          <input type="text" class="form-control" id="9" placeholder="Inaltime (m)"/>                
+                          <input type="text" class="form-control" id="9" placeholder="Inaltime (m)" onChange={e => setHeight(e.target.value)}/>                
                           </div>
                           <div class="col-md-6">
-                          <input type="text" class="form-control" id="10" placeholder="Pret/km preluare "/>                
+                          <input type="text" class="form-control" id="10" placeholder="Pret/km preluare " onChange={e => setEmptyprice(e.target.value)}/>                
                           </div>
                           <div class="col-md-6">
-                          <input type="text" class="form-control" id="11" placeholder="Pret/km livrare"/>                
+                          <input type="text" class="form-control" id="11" placeholder="Pret/km livrare" onChange={e => setFullprice(e.target.value)}/>                
                           </div>
                           <div class="col-md-6">
                           <input type="text" class="form-control" id="12" placeholder="Email"/>                
@@ -62,7 +113,7 @@ const TransporterAc = ({name}) => {
                           <input type="text" class="form-control" id="14" placeholder="Observatii"/>                
                           </div>
                         <div class="col-12">
-                        <select id="inputState" class="form-select">
+                        <select id="inputState" class="form-select" onChange={e => setTrucktype(e.target.value)}>
                             <option selected>Tip Camion..</option>
                             <option>Renault</option>
                             <option>Mercedes-Benz</option>
