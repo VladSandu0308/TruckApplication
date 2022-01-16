@@ -7,10 +7,12 @@ const Home = ({ token }) => {
           <Navigate to="/login"/>
         );
     }
-return (
-    <>
-    <h1> Welcome on TruckApp! </h1>
-    </>
 
-);}
+    return (
+        <>
+            <h1> Welcome on TruckApp! </h1>
+        </>
+
+    );}
+
 export default Home;
