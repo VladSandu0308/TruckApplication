@@ -12,6 +12,7 @@ import Login from './Login'
 import Register from './Register';
 import Logout from './components/Logout';
 import Account from './Account';
+import Requests from './Requests';
 
 import useToken from './hooks/useToken';
 import useRole from './hooks/useRole';
