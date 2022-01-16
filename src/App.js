@@ -11,8 +11,12 @@ import MapMenu from './MapMenu';
 import Login from './Login'
 import Register from './Register';
 import Logout from './components/Logout';
-import useToken from './hooks/useToken';
 import Account from './Account';
+
+import useToken from './hooks/useToken';
+import useRole from './hooks/useRole';
+import useName from './hooks/useName';
+
 
 
 
@@ -24,6 +28,8 @@ function App() {
     const title = "Truck"
 
     const { token, setToken } = useToken();
+    const { role, setRole } = useRole();
+    const { name, setName} = useName();
     
   return (
 
@@ -34,9 +40,10 @@ function App() {
         <Route exact path="/" element = {<Home token={token}/>}/>
         <Route path="/map" element = {<MapMenu token={token}/>}/>
         <Route path="/register" element = {<Register/>}/>
-        <Route path="/login" element = {<Login setToken={setToken} token={token}/>}/>
-        <Route path="/account" element = {<Account setToken={setToken} token={token}/>}/>
+        <Route path="/login" element = {<Login setToken={setToken} token={token} setRole={setRole} setName={setName}/>}/>
+        <Route path="/account" element = {<Account setToken={setToken} token={token} role={role} name={name}/>}/>
         <Route path="/logout" element = {<Logout setToken={setToken} token={token}/>}/>
+        <Route path="/requests" element = {<Requests/>}/>
 
       </Routes>
     </div>
