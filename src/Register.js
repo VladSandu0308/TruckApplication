@@ -75,7 +75,7 @@ const Register = () => {
               
             </div>
             <div className="card-footer">
-              <small className="text-muted">
+              <small className="text">
                   Already have an account?
                   <a className="ml-2" href="/login">
                       Sign In

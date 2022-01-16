@@ -15,7 +15,7 @@ async function loginUser(credentials) {
     .then(data => data.json())
  }
 
- const Login = ({ setToken, token }) => {
+ const Login = ({ setToken, token, setRole, role }) => {
   const [username, setUserName] = useState();
   const [password, setPassword] = useState();
   console.log("1234 " + token);
@@ -33,7 +33,10 @@ async function loginUser(credentials) {
       email: username,
       password
     });
+    console.log(retBody.message);
     setToken(retBody.token);
+    setRole(retBody.role);
+    console.log("role " + role);
 
   }
     return (
@@ -61,7 +64,7 @@ async function loginUser(credentials) {
             
           </div>
           <div className="card-footer">
-            <small className="text-muted">
+            <small className="text">
                 Don't have an account?
                 <a className="ml-2" href="/register">
                     Register
