@@ -1,13 +1,13 @@
 import React from 'react'
 
-const TransporterAc = () => {
+const TransporterAc = ({name}) => {
   return (
         <div class = "container">
           <div class="row">
               <div class="col-md-4" style ={{marginTop:'10px'}}>
                   <div className="card shadow mb-4 mx-auto text-center" style={{ width: '10rem', maxHeight: '40rem', marginTop: '5%', backgroundColor: '#57abd1', alignContent:'center' }}>
-                    <h5 class="card-title"> Nume user </h5>
-                    <h6 class="card-subtitle mb-2 text-muted"> Rol: transportator </h6>
+                    <h5 class="card-title"> {name}  </h5>
+                    <h6 class="card-subtitle mb-2 text-muted"> Transportator </h6>
                   </div>
 
                 </div>

@@ -1,8 +1,9 @@
 import { Navigate } from "react-router-dom";
+import ClientAc from "./components/ClientAc";
 
 import TransporterAc from "./components/TransporterAc";
 
-const Account = ({ token, role }) => {
+const Account = ({ token, role, name }) => {
 
     if(!token) {
         return (
@@ -12,14 +13,19 @@ const Account = ({ token, role }) => {
 
     if (role === "Transporter") {
       return (
-        <TransporterAc />
+        <TransporterAc name={name} />
       )
     }
-return (
-  
-    
- <></>
+
+    if (role === "Client") {
+      return (
+        <ClientAc name={name} />
+      )
+    }
 
 
-);}
+    return (    
+    <></>
+    );
+}
 export default Account;

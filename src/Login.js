@@ -15,14 +15,14 @@ async function loginUser(credentials) {
     .then(data => data.json())
  }
 
- const Login = ({ setToken, token, setRole, role }) => {
+ const Login = ({ setToken, token, setRole, setName }) => {
   const [username, setUserName] = useState();
   const [password, setPassword] = useState();
   console.log("1234 " + token);
 
   if(token) {
     return (
-      <Navigate to="/"/>
+      <Navigate to="/account"/>
     );
   }
   
@@ -36,8 +36,8 @@ async function loginUser(credentials) {
     console.log(retBody.message);
     setToken(retBody.token);
     setRole(retBody.role);
-    console.log("role " + role);
-
+    setName(retBody.username);
+    console.log("name " + retBody.username);
   }
     return (
       
