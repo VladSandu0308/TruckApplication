@@ -29,9 +29,10 @@ code {
   align-items: end;
 }
 .navbar a {
-  margin-left: 30px;
+  margin-left: 10px;
+  margin-right: 5px;
   text-decoration: none;
-  padding: 6px;
+  padding: 7px;
   font-family: "Quicksand";
 }
 .navbar a:hover {

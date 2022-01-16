@@ -12,6 +12,7 @@ import Login from './Login'
 import Register from './Register';
 import Logout from './components/Logout';
 import useToken from './hooks/useToken';
+import Account from './Account';
 
 
 
@@ -34,6 +35,7 @@ function App() {
         <Route path="/map" element = {<MapMenu token={token}/>}/>
         <Route path="/register" element = {<Register/>}/>
         <Route path="/login" element = {<Login setToken={setToken} token={token}/>}/>
+        <Route path="/account" element = {<Account setToken={setToken} token={token}/>}/>
         <Route path="/logout" element = {<Logout setToken={setToken} token={token}/>}/>
 
       </Routes>
