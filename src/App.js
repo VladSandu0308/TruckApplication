@@ -12,11 +12,12 @@ import Login from './Login'
 import Register from './Register';
 import Logout from './components/Logout';
 import Account from './Account';
-import Requests from './Requests';
+import ClientsRequests from './Requests';
 
 import useToken from './hooks/useToken';
 import useRole from './hooks/useRole';
 import useName from './hooks/useName';
+import GenericReq from './components/GenericReq';
 
 
 
@@ -44,7 +45,7 @@ function App() {
         <Route path="/login" element = {<Login setToken={setToken} token={token} setRole={setRole} setName={setName}/>}/>
         <Route path="/account" element = {<Account setToken={setToken} token={token} role={role} name={name}/>}/>
         <Route path="/logout" element = {<Logout setToken={setToken} token={token}/>}/>
-        <Route path="/requests" element = {<Requests/>}/>
+        <Route path="/requests" element = {<GenericReq role={role}/>}/>
 
       </Routes>
     </div>
