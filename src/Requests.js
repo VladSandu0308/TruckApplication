@@ -53,8 +53,9 @@ class ClientsRequests extends React.Component{
                        <p> Data maxima de plecare: {item.dep_max_date} </p>
                        <p> Data sosirii:  {item.arival_date} </p>
                        <p> Data maxima de sosire:  {item.arival_max_date} </p>
+                       <p> Locatie Plecare: {item.dep_place}</p>
                        <p> Destinatie:  {item.arival_place} </p> 
-                       <p> Tip produs: {item.prodcut_type} </p>
+                       <p> Tip produs: {item.product_type} </p>
                        <p> Volum (m3): {item.product_volume} </p>
                        <p> Greutate (tone): {item.product_weight} </p>
                        <p> Observatii: {item.obs}</p>
