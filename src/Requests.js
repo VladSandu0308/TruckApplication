@@ -40,11 +40,11 @@ class ClientsRequests extends React.Component{
             items.map((item) => ( 
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="flush-headingOne">
-                    <button class="accordion-button collapsed" type="button" data-toggle="collapse" data-target={format('#{0}', item.t_id)} aria-expanded="false" aria-controls="flush-collapseOne">
+                    <button class="accordion-button collapsed" type="button" data-toggle="collapse" data-target={format('#{0}', item.c_id)} aria-expanded="false" aria-controls="flush-collapseOne">
                       {item.username }: {item.dep_place} - {item.arival_place} 
                     </button>
                     </h2>
-                    <div id={item.t_id} class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-parent="#accordionFlushExample">
+                    <div id={item.c_id} class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-parent="#accordionFlushExample">
                     <div class="accordion-body">
                        <p> Client: {item.username} </p>
                        <p> Email: {item.email} </p>
