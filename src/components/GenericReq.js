@@ -4,11 +4,11 @@ import TransporterRequests from './TransporterRequests'
 
 const GenericReq = ({ role }) => {
   if (role === 'Client') {
-    return( <ClientsRequests />)
+    return( <TransporterRequests />)
   }
 
   if (role === 'Transporter') {
-    return( <TransporterRequests />)
+    return( <ClientsRequests />)
   }
 
   return (

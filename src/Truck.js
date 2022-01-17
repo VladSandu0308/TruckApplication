@@ -8,7 +8,7 @@ const Point = (props) => {
     const [graphic, setPoint] = useState(null);
 
     useEffect(() => {
-        loadModules(['esri/Graphic', "esri/Map", "esri/views/MapView", "esri/layers/FeatureLayer"]).then(([Graphic]) => {
+        loadModules(['esri/Graphic', "esri/rest/route","esri/rest/support/RouteParameters","esri/Map", "esri/views/MapView", "esri/layers/FeatureLayer"]).then(([Graphic]) => {
             const point = { 
                 type: "point",
                 longitude: props.x,
