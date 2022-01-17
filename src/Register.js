@@ -16,6 +16,7 @@ async function register(credentials) {
 const Register = () => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
+  const [phone, setPhone] = useState()
   const [role, setRole] = useState();
   const [name, setName] = useState();
   const [token, setToken] = useState(0);
@@ -26,6 +27,7 @@ const Register = () => {
     const retBody = await register({
       name,
       email,
+      phone,
       password,
       role
     });
@@ -58,6 +60,11 @@ const Register = () => {
               <div className="form-group">
                 <label>Password</label>
                 <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Password" onChange={e => setPassword(e.target.value)}/>
+              </div>
+
+              <div className="form-group">
+                <label>Phone</label>
+                <input type="text" className="form-control" id="exampleInputPassword1" placeholder="Phone number" onChange={e => setPhone(e.target.value)}/>
               </div>
 
               <div className='form-group'>

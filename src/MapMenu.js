@@ -7,6 +7,7 @@ return (
     <div style={{ width: '100vw', height: '90vh'}} className="App">
         <Map 
             viewProperties={{center: [26, 45]}}>
+                
             <Truck x={26} y={45}/>
             </Map>
     </div>

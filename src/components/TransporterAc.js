@@ -25,9 +25,11 @@ const TransporterAc = ({name}) => {
   const [height, setHeight] = useState();
   const [empty_price, setEmptyprice] = useState();
   const [full_price, setFullprice] = useState();
+ 
+  const [obs, setObs] = useState("");
   const [token, setToken] = useState(0);
   const user = name
-
+  
   const handleSubmit = async e => {
     e.preventDefault();
         const retBody = await register({
@@ -43,7 +45,8 @@ const TransporterAc = ({name}) => {
           height,
           empty_price,
           full_price,
-          user
+          user,
+          obs
 
         });
 
@@ -97,13 +100,9 @@ const TransporterAc = ({name}) => {
                           <div class="col-md-6">
                           <input type="text" class="form-control" id="11" placeholder="Pret/km livrare" onChange={e => setFullprice(e.target.value)}/>                
                           </div>
-                          <div class="col-md-6">
-                          <input type="text" class="form-control" id="12" placeholder="Email"/>                
-                          </div><div class="col-md-6">
-                          <input type="text" class="form-control" id="13" placeholder="Telefon"/>                
-                          </div>
+                        
                           <div class="col-md-12">
-                          <input type="text" class="form-control" id="14" placeholder="Observatii"/>                
+                          <input type="text" class="form-control" id="14" placeholder="Observatii" onChange={e => setObs(e.target.value)}/>                
                           </div>
                         <div class="col-12">
                         <select id="inputState" class="form-select" onChange={e => setTrucktype(e.target.value)}>

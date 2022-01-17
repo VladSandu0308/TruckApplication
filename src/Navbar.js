@@ -22,7 +22,7 @@ const Navbar  = ({ token }) => {
                                 color: "white",
                                 backgroundColor: '#04395E',
                                 borderRadius: '8px'
-                            }} > Requests </a> 
+                            }} > Offers </a> 
                             <a href="/logout" style={{
                                 color: "white",
                                 backgroundColor: '#04395E',
