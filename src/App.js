@@ -18,6 +18,7 @@ import useToken from './hooks/useToken';
 import useRole from './hooks/useRole';
 import useName from './hooks/useName';
 import GenericReq from './components/GenericReq';
+import ChangeRole from './components/ChangeRole';
 
 
 
@@ -36,7 +37,7 @@ function App() {
   return (
 
   <div className="App">
-    <Navbar token={token}/>
+    <Navbar token={token} role={role}/>
     <div className="content">
       <Routes>
         <Route exact path="/" element = {<Home token={token}/>}/>
@@ -46,6 +47,7 @@ function App() {
         <Route path="/account" element = {<Account setToken={setToken} token={token} role={role} name={name}/>}/>
         <Route path="/logout" element = {<Logout setToken={setToken} token={token}/>}/>
         <Route path="/requests" element = {<GenericReq role={role}/>}/>
+        <Route path="/changeRole" element = {<ChangeRole />}/>
 
       </Routes>
     </div>

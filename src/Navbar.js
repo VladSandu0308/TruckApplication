@@ -1,6 +1,27 @@
 import { Outlet, Link } from "react-router-dom";
 
-const Navbar  = ({ token }) => {
+const Navbar  = ({ token, role }) => {
+
+    if (role === 'Admin') {
+        return (
+            <nav className="navbar" >
+                <h1> TruckApp </h1>
+                <div className="links">
+                    <a href="/account" style={{
+                        color: "white",
+                        backgroundColor: '#04395E',
+                        borderRadius: '8px'
+                    }} > Account </a> 
+                    <a href="/logout" style={{
+                        color: "white",
+                        backgroundColor: '#04395E',
+                        borderRadius: '8px'
+                    }} > Logout </a>              
+                </div>
+            </nav>
+        )
+    }
+
     return (  
         <>
             {
