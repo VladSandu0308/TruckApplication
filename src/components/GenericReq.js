@@ -2,13 +2,14 @@ import React from 'react'
 import ClientsRequests from '../Requests'
 import TransporterRequests from './TransporterRequests'
 
-const GenericReq = ({ role }) => {
+const GenericReq = ({ role, name }) => {
+
   if (role === 'Client') {
-    return( <TransporterRequests />)
+    return( <TransporterRequests name={name}/>)
   }
 
   if (role === 'Transporter') {
-    return( <ClientsRequests />)
+    return( <ClientsRequests name={name}/>)
   }
 
   return (

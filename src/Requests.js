@@ -24,6 +24,12 @@ class ClientsRequests extends React.Component{
         })
     }
 
+    handleAccept(username) {
+    
+        console.log("Room name: " + username);
+        
+    }
+
     render() {
         const { DataisLoaded, items } = this.state;
         if (!DataisLoaded)
@@ -58,7 +64,9 @@ class ClientsRequests extends React.Component{
                        <p> Tip produs: {item.product_type} </p>
                        <p> Volum (m3): {item.product_volume} </p>
                        <p> Greutate (tone): {item.product_weight} </p>
+                       <p> Budget: {item.budget}</p>
                        <p> Observatii: {item.obs}</p>
+                       <button type="button" className="btn btn-info font-weight-bold" onClick={() => this.handleAccept(item.username)} >Accept Offer</button>
                     </div>
                     </div>
                 </div>

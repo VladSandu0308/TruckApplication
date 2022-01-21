@@ -1,6 +1,8 @@
 import React from 'react'
 import {format} from 'react-string-format'
 
+
+
 class TransporterRequests extends React.Component{
 
     constructor(props) {
@@ -24,6 +26,12 @@ class TransporterRequests extends React.Component{
         })
     }
 
+    handleAccept(username) {
+    
+        console.log("Room name: " + username);
+        
+    }
+
     render() {
         const { DataisLoaded, items } = this.state;
         if (!DataisLoaded)
@@ -31,6 +39,8 @@ class TransporterRequests extends React.Component{
                 <div>
                     <h1> Pleses wait some time.... </h1>
                 </div>);
+        
+        console.log("Name:" + this.props.name);
    
         return (
             <div className="card mx-auto" style ={{backgroundColor: '#c4d6b0', padding: '15px', width: '35rem', marginTop: '3rem'}}>
@@ -61,6 +71,7 @@ class TransporterRequests extends React.Component{
                                <p> Inaltime: {item.height} </p>
                                <p> Pret/km preluare: {item.empty_price} </p>
                                <p> Pret/km livrare: {item.full_price} </p>
+                               <button type="button" className="btn btn-info font-weight-bold" onClick={() => this.handleAccept(item.username)} >Accept Offer</button>
                             </div>
                             </div>
                         </div>

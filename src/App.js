@@ -19,6 +19,7 @@ import useRole from './hooks/useRole';
 import useName from './hooks/useName';
 import GenericReq from './components/GenericReq';
 import ChangeRole from './components/ChangeRole';
+import ReviewOrder from './components/ReviewOrder';
 
 
 
@@ -46,9 +47,9 @@ function App() {
         <Route path="/login" element = {<Login setToken={setToken} token={token} setRole={setRole} setName={setName}/>}/>
         <Route path="/account" element = {<Account setToken={setToken} token={token} role={role} name={name}/>}/>
         <Route path="/logout" element = {<Logout setToken={setToken} token={token}/>}/>
-        <Route path="/requests" element = {<GenericReq role={role}/>}/>
+        <Route path="/requests" element = {<GenericReq role={role} name={name}/>}/>
         <Route path="/changeRole" element = {<ChangeRole />}/>
-
+        <Route path="/review/:id" element = {<ReviewOrder />}/>
       </Routes>
     </div>
 </div>
