@@ -3,13 +3,13 @@ import { Map } from "@esri/react-arcgis";
 import Truck from './Truck.js';
 import {useEffect, useState} from "react";
 
-const MapMenu = () => {
+const MapMenu = ({ name, role }) => {
 
     const [trucks, setTrucks] = useState([]);
     const [finished, setFinished] = useState(0);
 
     useEffect(() => {fetch(
-        'http://localhost:8080/getTransporters')
+        'http://localhost:8080/getContracts')
         .then((res) => res.json())
         .then((data) => setTrucks(data))
     }, [])
@@ -23,7 +23,7 @@ return (
         <Map 
             viewProperties={{center: [26, 45]}}>
             
-            {trucks.map((item) => (
+            {trucks.filter((item) => { return item.t_username === name || item.c_username === name || role === "Admin"}).map((item) => (
 
                 <Truck dep_place={item.dep_place} arival_place={item.arival_place}/>
                 

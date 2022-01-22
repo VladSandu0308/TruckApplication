@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import {format} from 'react-string-format'
 
 class ClientsRequests extends React.Component{
@@ -8,7 +9,8 @@ class ClientsRequests extends React.Component{
    
         this.state = {
             items: [],
-            DataisLoaded: false
+            DataisLoaded: false,
+            navigator: false
         };
     }
 
@@ -24,19 +26,26 @@ class ClientsRequests extends React.Component{
         })
     }
 
-    handleAccept(username) {
+    handleAccept(client, int_place, arival_place, pay_deadline) {
     
-        console.log("Room name: " + username);
+        console.log("Room name: " + arival_place);
         
+        return null;
     }
-
+    
     render() {
-        const { DataisLoaded, items } = this.state;
+        const { DataisLoaded, items, navigator } = this.state;
         if (!DataisLoaded)
             return(
                 <div>
                     <h1> Pleses wait some time.... </h1>
                 </div>);
+        
+        if (navigator) {
+            return (
+                <Navigate to={format('/review/{0}', this.state.user)} state={{"client": this.state.user}} />
+            )
+        }
    
    return (
     <div className="card mx-auto" style ={{backgroundColor: '#c4d6b0', padding: '15px', width: '35rem', marginTop: '3rem'}}>
@@ -66,7 +75,15 @@ class ClientsRequests extends React.Component{
                        <p> Greutate (tone): {item.product_weight} </p>
                        <p> Budget: {item.budget}</p>
                        <p> Observatii: {item.obs}</p>
-                       <button type="button" className="btn btn-info font-weight-bold" onClick={() => this.handleAccept(item.username)} >Accept Offer</button>
+                       <Link to={format('/review/{0}', item.c_id)} state={{ 
+                           transporter: this.props.name, 
+                           client: item.username,
+                           dep_place: item.dep_place,
+                           arival_place: item.arival_place,
+                           pay_deadline: item.arival_max_date,
+                           myself: "Transporter",
+                           id: item.c_id
+                        }} className="btn btn-info font-weight-bold">Accept Offer</Link>
                     </div>
                     </div>
                 </div>
