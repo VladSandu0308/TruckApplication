@@ -6,7 +6,6 @@ import {useEffect, useState} from "react";
 const MapMenu = ({ name, role }) => {
 
     const [trucks, setTrucks] = useState([]);
-    const [finished, setFinished] = useState(0);
 
     useEffect(() => {fetch(
         'http://localhost:8080/getContracts')
@@ -25,9 +24,11 @@ return (
             
             {trucks.filter((item) => { return item.t_username === name || item.c_username === name || role === "Admin"}).map((item) => (
 
-                <Truck dep_place={item.dep_place} arival_place={item.arival_place} arival_date={item.arival_date} dep_date={item.dep_date} id={item.t_id}/>
+                <Truck dep_place={item.dep_place} int_place={item.int_place} arival_place={item.arival_place} arival_date={item.arival_date} dep_date={item.dep_date} id={item.t_id}/>
                 
                 ))
+
+                
             
             }
             </Map>

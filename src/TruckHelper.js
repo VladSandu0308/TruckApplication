@@ -6,7 +6,7 @@ const TruckHelper = (props) => {
 
     useEffect(() => {
 
-        loadModules(["esri/config", "esri/Graphic", "esri/rest/route", "esri/rest/support/RouteParameters", "esri/rest/support/FeatureSet", "esri/rest/locator"]).then(([esriConfig, Graphic, route, RouteParameters, FeatureSet, locator]) => {
+        loadModules(["esri/config", "esri/Graphic", "esri/rest/route", "esri/rest/support/RouteParameters", "esri/rest/support/FeatureSet"]).then(([esriConfig, Graphic, route, RouteParameters, FeatureSet]) => {
             esriConfig.apiKey = "AAPK6db2164fe0ea4d038a202dc721d8a6d79ww1DsTwGfPBwSwsUPV3ij7fMi7sKbHcBZgvoh863r-BruDuQL6oL0lYP8en3PKG";
 
              const fillSymbol = {
@@ -33,14 +33,27 @@ const TruckHelper = (props) => {
                 popupTemplate: popupTemplate
             });
 
+            const intGraphic = new Graphic({
+                geometry: props.intPoint,
+                symbol: fillSymbol,
+            });
+
             const arivalGraphic = new Graphic({
                 geometry: props.arivalPoint,
                 symbol: fillSymbol
             });
 
-            const routeParams = new RouteParameters({
+            const routeParamsDepInt = new RouteParameters({
                 stops: new FeatureSet({
-                    features: [depGraphic, arivalGraphic],
+                    features: [depGraphic, intGraphic],
+                }),
+                directionsLengthUnits: "kilometers",
+                returnDirections: true
+            });
+
+            const routeParamsIntArival = new RouteParameters({
+                stops: new FeatureSet({
+                    features: [intGraphic, arivalGraphic],
                 }),
                 directionsLengthUnits: "kilometers",
                 returnDirections: true
@@ -48,7 +61,7 @@ const TruckHelper = (props) => {
 
             props.parentProps.view.graphics.add(depGraphic);
 
-            route.solve(routeUrl, routeParams)
+            route.solve(routeUrl, routeParamsDepInt)
                 .then(function(data) {
                     data.routeResults.forEach(function(result){
                         result.route.symbol = {
@@ -58,7 +71,18 @@ const TruckHelper = (props) => {
                         };
                         props.parentProps.view.graphics.add(result.route);
                     })
-                    console.log(data.routeResults[0].directions.totalLength);
+                });
+            
+            route.solve(routeUrl, routeParamsIntArival)
+                .then(function(data) {
+                    data.routeResults.forEach(function(result){
+                        result.route.symbol = {
+                            type: "simple-line",
+                            color: [5, 150, 255],
+                            width: 3
+                        };
+                        props.parentProps.view.graphics.add(result.route);
+                    })
                 });
 
             // Add the geometry and symbol to a new graphic
