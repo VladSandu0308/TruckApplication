@@ -1,5 +1,69 @@
 import React, { useState } from 'react'
 import { Navigate, useLocation } from 'react-router-dom';
+import { loadModules } from "esri-loader";
+
+function getLocation(place) {
+    return loadModules(["esri/config", "esri/rest/locator"]).then(([esriConfig, locator]) => {
+        esriConfig.apiKey = "AAPK6db2164fe0ea4d038a202dc721d8a6d79ww1DsTwGfPBwSwsUPV3ij7fMi7sKbHcBZgvoh863r-BruDuQL6oL0lYP8en3PKG";
+
+        const locatorUrl = "https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer";
+
+        const geoCodeParamsPlace = {
+            address: {
+                SingleLine: place
+            }
+        }
+
+        return locator.addressToLocations(locatorUrl, geoCodeParamsPlace)
+        .then((response) => {
+            return response[0].location;
+        })
+    })
+
+}
+
+async function getDistance(dep_place, arival_place) {
+
+    let depLocation = await getLocation(dep_place);
+    let arivalLocation = await getLocation(arival_place);
+    return loadModules(["esri/config", "esri/rest/route", "esri/Graphic", "esri/rest/support/FeatureSet","esri/rest/support/RouteParameters"]).then(([esriConfig, route, Graphic, FeatureSet, RouteParemeters]) => {
+        esriConfig.apiKey = "AAPK6db2164fe0ea4d038a202dc721d8a6d79ww1DsTwGfPBwSwsUPV3ij7fMi7sKbHcBZgvoh863r-BruDuQL6oL0lYP8en3PKG";
+
+        const routeUrl = "https://route-api.arcgis.com/arcgis/rest/services/World/Route/NAServer/Route_World";
+
+        const fillSymbol = {
+            type: "simple-marker",
+            color: [0, 0, 0],
+            size: "8px"
+        }
+
+        const depGraphic = new Graphic({
+            geometry: depLocation,
+            symbol: fillSymbol
+        })
+
+        const arivalGraphic = new Graphic({
+            geometry: arivalLocation,
+            symbol: fillSymbol
+        })
+
+        const routeParams = new RouteParemeters({
+            stops: new FeatureSet({
+                features: [depGraphic, arivalGraphic]
+
+            }),
+            directionsLengthUnits: "kilometers",
+            returnDirections: true
+        })
+
+        return route.solve(routeUrl, routeParams)
+            .then(function(data) {
+                return data.routeResults[0].directions.totalLength;
+            })
+    })
+
+}
+
 
 async function postRequest(credentials) {
   return fetch('http://localhost:8080/contract', {
@@ -32,6 +96,9 @@ const Logout = () => {
       myLocation = location;
     }
     
+    let depPlaceIntPlaceDistance = await getDistance(state.dep_place, myLocation);
+    let intPlaceArivalPlaceDistance = await getDistance(myLocation, state.arival_place);
+
     if (state.myself === "Client") {
       retBody = await postRequest({
         trans: state.transporter,
@@ -39,7 +106,7 @@ const Logout = () => {
         dep_place: state.dep_place,
         int_place: myLocation,
         arival_place: state.arival_place,
-        price: price,
+        price: depPlaceIntPlaceDistance * state.empty_price + intPlaceArivalPlaceDistance * state.full_price,
         pay_deadline: state.pay_deadline.split("T")[0],
         t_id: state.id
       });
