@@ -1,5 +1,6 @@
 import { loadModules } from "esri-loader";
 import { useEffect, useState } from "react";
+import {format} from 'react-string-format'
 
 const TruckHelper = (props) => {
 
@@ -15,9 +16,21 @@ const TruckHelper = (props) => {
             };
             const routeUrl = "https://route-api.arcgis.com/arcgis/rest/services/World/Route/NAServer/Route_World";
 
+            const popupTemplate = {
+                title: "{Name}",
+                content: "{Description}"
+             }
+             const attributes = {
+                Name: "Camion " + String(props.parentProps.id),
+                Description:   "De la: " + String(props.parentProps.dep_place) + "\n" + "La: " + String(props.parentProps.arival_place) + "\n" +
+                 "Data plecare: " + String(props.parentProps.dep_date) + "\n" + "Data sosire: " + String(props.parentProps.arival_date)
+
+             }
             const depGraphic = new Graphic({
                 geometry: props.depPoint,
-                symbol: fillSymbol
+                symbol: fillSymbol,
+                attributes: attributes,
+                popupTemplate: popupTemplate
             });
 
             const arivalGraphic = new Graphic({

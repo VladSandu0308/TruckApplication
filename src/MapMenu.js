@@ -25,7 +25,7 @@ return (
             
             {trucks.map((item) => (
 
-                <Truck dep_place={item.dep_place} arival_place={item.arival_place}/>
+                <Truck dep_place={item.dep_place} arival_place={item.arival_place} arival_date={item.arival_date} dep_date={item.dep_date} id={item.t_id}/>
                 
                 ))
             
