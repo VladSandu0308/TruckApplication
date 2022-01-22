@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 import {format} from 'react-string-format'
 
 
@@ -71,7 +72,15 @@ class TransporterRequests extends React.Component{
                                <p> Inaltime: {item.height} </p>
                                <p> Pret/km preluare: {item.empty_price} </p>
                                <p> Pret/km livrare: {item.full_price} </p>
-                               <button type="button" className="btn btn-info font-weight-bold" onClick={() => this.handleAccept(item.username)} >Accept Offer</button>
+                               <Link to={format('/review/{0}', item.t_id)} state={{ 
+                                    client: this.props.name, 
+                                    transporter: item.username,
+                                    dep_place: item.dep_place,
+                                    arival_place: item.arival_place,
+                                    pay_deadline: item.arival_date,
+                                    myself: "Client",
+                                    id: item.t_id
+                                }} className="btn btn-info font-weight-bold">Accept Offer</Link>
                             </div>
                             </div>
                         </div>
