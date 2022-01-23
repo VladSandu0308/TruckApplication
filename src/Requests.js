@@ -128,7 +128,9 @@ class ClientsRequests extends React.Component{
                                             arival_place: item.arival_place,
                                             pay_deadline: item.arival_max_date,
                                             myself: "Transporter",
-                                            id: item.c_id
+                                            id: item.c_id,
+                                            dep_date: item.dep_date,
+                                            arival_date: item.arival_date
                                             }} className="btn btn-info font-weight-bold">Accept Offer</Link>
                                         </div>
                                         </div>

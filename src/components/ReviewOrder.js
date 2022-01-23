@@ -108,7 +108,9 @@ const Logout = () => {
         arival_place: state.arival_place,
         price: depPlaceIntPlaceDistance * state.empty_price + intPlaceArivalPlaceDistance * state.full_price,
         pay_deadline: state.pay_deadline.split("T")[0],
-        t_id: state.id
+        t_id: state.id,
+        dep_date: state.dep_date,
+        arival_date: state.arival_date
       });
     } else {
       retBody = await postRequest({
@@ -119,7 +121,9 @@ const Logout = () => {
         arival_place: state.arival_place,
         price: price,
         pay_deadline: state.pay_deadline.split("T")[0],
-        c_id: state.id
+        c_id: state.id,
+        dep_date: state.dep_date,
+        arival_date: state.arival_date
       });
     }
 
