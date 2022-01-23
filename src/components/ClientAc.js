@@ -22,6 +22,7 @@ const TransporterAc = ({name}) => {
   const [product_type, setProducttype] = useState();
   const [product_volume, setVolume] = useState();
   const [product_weight, setWeight] = useState();
+  const [budget, setBudget] = useState();
   const [obs, setObs] = useState("");
 
   const [token, setToken] = useState(0);
@@ -42,6 +43,7 @@ const TransporterAc = ({name}) => {
           product_weight,
           product_volume,
           user,
+          budget,
           obs
 
         });
@@ -94,11 +96,14 @@ const TransporterAc = ({name}) => {
                             <option>Piese auto</option>
                           </select>               
                           </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                           <input type="text" class="form-control" id="5" placeholder="Volum (m3)"  onChange={e => setVolume(e.target.value)}/>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                           <input type="text" class="form-control" id="6" placeholder="Greutate (tone)"  onChange={e => setWeight(e.target.value)}/>
+                        </div>
+                        <div class="col-md-4">
+                          <input type="text" class="form-control" id="7" placeholder="Buget"  onChange={e => setBudget(e.target.value)}/>
                         </div>
                         <div class="col-md-12">
                           <input type="text" class="form-control" id="6" placeholder="Observatii"  onChange={e => setObs(e.target.value)}/>
