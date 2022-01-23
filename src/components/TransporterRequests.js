@@ -82,7 +82,9 @@ class TransporterRequests extends React.Component{
                                             myself: "Client",
                                             id: item.t_id,
                                             empty_price: item.empty_price,
-                                            full_price: item.full_price
+                                            full_price: item.full_price,
+                                            dep_date: item.dep_date,
+                                            arival_date: item.arival_date
                                         }} className="btn btn-info font-weight-bold">Accept Offer</Link>
                                     </div>
                                     </div>
