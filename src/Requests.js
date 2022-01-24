@@ -85,7 +85,8 @@ class ClientsRequests extends React.Component{
                                     myself: "Transporter",
                                     id: item.c_id,
                                     dep_date: item.dep_date,
-                                    arival_date: item.arival_date
+                                    arival_date: item.arival_date,
+                                    obs: item.obs
                                     }} className="btn btn-info font-weight-bold">Accept Offer</Link>
                                 </div>
                                 </div>
@@ -132,7 +133,8 @@ class ClientsRequests extends React.Component{
                                             myself: "Transporter",
                                             id: item.c_id,
                                             dep_date: item.dep_date,
-                                            arival_date: item.arival_date
+                                            arival_date: item.arival_date,
+                                            obs: item.obs
                                             }} className="btn btn-info font-weight-bold">Accept Offer</Link>
                                         </div>
                                         </div>

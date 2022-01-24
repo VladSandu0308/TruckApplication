@@ -73,6 +73,7 @@ class TransporterRequests extends React.Component{
                                     <p> Inaltime: {item.height} </p>
                                     <p> Pret/km preluare: {item.empty_price} </p>
                                     <p> Pret/km livrare: {item.full_price} </p>
+                                    <p> Observatii: {item.obs}</p>
                                     <Link to={format('/review/{0}', item.t_id)} state={{ 
                                             client: this.props.name, 
                                             transporter: item.username,
@@ -84,7 +85,8 @@ class TransporterRequests extends React.Component{
                                             empty_price: item.empty_price,
                                             full_price: item.full_price,
                                             dep_date: item.dep_date,
-                                            arival_date: item.arival_date
+                                            arival_date: item.arival_date,
+                                            obs: item.obs
                                         }} className="btn btn-info font-weight-bold">Accept Offer</Link>
                                     </div>
                                     </div>
@@ -123,6 +125,7 @@ class TransporterRequests extends React.Component{
                                             <p> Inaltime: {item.height} </p>
                                             <p> Pret/km preluare: {item.empty_price} </p>
                                             <p> Pret/km livrare: {item.full_price} </p>
+                                            <p> Observatii: {item.obs}</p>
                                             <Link to={format('/review/{0}', item.t_id)} state={{ 
                                                     client: this.props.name, 
                                                     transporter: item.username,
@@ -134,7 +137,8 @@ class TransporterRequests extends React.Component{
                                                     empty_price: item.empty_price,
                                                     full_price: item.full_price,
                                                     dep_date: item.dep_date,
-                                                    arival_date: item.arival_date
+                                                    arival_date: item.arival_date,
+                                                    obs: item.obs
                                                 }} className="btn btn-info font-weight-bold">Accept Offer</Link>
                                             </div>
                                             </div>
