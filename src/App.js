@@ -20,6 +20,7 @@ import useName from './hooks/useName';
 import GenericReq from './components/GenericReq';
 import ChangeRole from './components/ChangeRole';
 import ReviewOrder from './components/ReviewOrder';
+import MyContracts from './MyContracts';
 
 
 
@@ -56,6 +57,7 @@ function App() {
         <Route path="/requests" element = {<GenericReq role={role} name={name}/>}/>
         <Route path="/changeRole" element = {<ChangeRole />}/>
         <Route path="/review/:id" element = {<ReviewOrder />}/>
+        <Route path="/contracts" element = {<MyContracts role={role} name={name}/>}/>
       </Routes>
     </div>
 </div>

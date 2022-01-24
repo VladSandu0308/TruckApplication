@@ -16,7 +16,12 @@ const Navbar  = ({ token, role }) => {
                         color: "white",
                         backgroundColor: '#04395E',
                         borderRadius: '8px'
-                    }} > Map </a> 
+                    }} > Map </a>
+                    <a href="/contracts" style={{
+                                color: "white",
+                                backgroundColor: '#04395E',
+                                borderRadius: '8px'
+                            }} > Contracts </a> 
                     <a href="/logout" style={{
                         color: "white",
                         backgroundColor: '#04395E',
@@ -48,12 +53,17 @@ const Navbar  = ({ token, role }) => {
                                 color: "white",
                                 backgroundColor: '#04395E',
                                 borderRadius: '8px'
-                            }} > Offers </a> 
+                            }} > Offers </a>
+                            <a href="/contracts" style={{
+                                color: "white",
+                                backgroundColor: '#04395E',
+                                borderRadius: '8px'
+                            }} > Contracts </a> 
                             <a href="/logout" style={{
                                 color: "white",
                                 backgroundColor: '#04395E',
                                 borderRadius: '8px'
-                            }} > Logout </a>              
+                            }} > Logout </a>            
                         </div>
                     </nav>
                 ) : (

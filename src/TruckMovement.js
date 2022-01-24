@@ -78,9 +78,8 @@ const TruckMovement = (props) => {
            if(!finished){
             setTimer(new Date());
            }
-        }, 5000);
+        }, 1000);
      
-        // This is important, you must clear your interval when component unmounts
         return () => clearInterval(interval);
      
      }, [])
