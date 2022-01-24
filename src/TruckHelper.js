@@ -81,7 +81,6 @@ const TruckHelper = (props) => {
                     })
                 });
 
-            // Add the geometry and symbol to a new graphic
         }).catch((err) => console.log(err));
 
         return function cleanup() {
