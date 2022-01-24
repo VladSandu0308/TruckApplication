@@ -1,8 +1,12 @@
 import { loadModules } from "esri-loader";
 import { useEffect, useState } from "react";
 import {format} from 'react-string-format'
+import TruckMovement from './TruckMovement'
 
 const TruckHelper = (props) => {
+
+    const [depIntPath, setDepIntPath] = useState(0);
+    const [intArivalPath, setIntArivalPath] = useState(0);
 
     useEffect(() => {
 
@@ -70,6 +74,7 @@ const TruckHelper = (props) => {
                             width: 3
                         };
                         props.parentProps.view.graphics.add(result.route);
+                        setDepIntPath(result.route.geometry.paths[0]);
                     })
                 });
             
@@ -82,6 +87,7 @@ const TruckHelper = (props) => {
                             width: 3
                         };
                         props.parentProps.view.graphics.add(result.route);
+                        setIntArivalPath(result.route.geometry.paths[0]);
                     })
                 });
 
@@ -92,7 +98,11 @@ const TruckHelper = (props) => {
         };
     }, []);
 
-    return null;
+    return (
+        <div>
+            { depIntPath && intArivalPath && <TruckMovement path={depIntPath.concat(intArivalPath)} view={props.parentProps.view}/>}
+        </div>
+    );
 }
 
 export default TruckHelper;
