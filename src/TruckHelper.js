@@ -1,8 +1,14 @@
 import { loadModules } from "esri-loader";
 import { useEffect, useState } from "react";
 import {format} from 'react-string-format'
+import TruckMovement from './TruckMovement'
 
 const TruckHelper = (props) => {
+
+    const [depIntPath, setDepIntPath] = useState(0);
+    const [intArivalPath, setIntArivalPath] = useState(0);
+    const [depIntRouteGraphic, setDepIntRouteGraphic] = useState(0);
+    const [intArivalRouteGraphic, setIntArivalRouteGraphic] = useState(0);
 
     useEffect(() => {
 
@@ -16,21 +22,9 @@ const TruckHelper = (props) => {
             };
             const routeUrl = "https://route-api.arcgis.com/arcgis/rest/services/World/Route/NAServer/Route_World";
 
-            const popupTemplate = {
-                title: "{Name}",
-                content: "{Description}"
-             }
-             const attributes = {
-                Name: "Camion " + String(props.parentProps.id),
-                Description:   "De la: " + String(props.parentProps.dep_place) + "\n" + "La: " + String(props.parentProps.arival_place) + "\n" +
-                 "Data plecare: " + String(props.parentProps.dep_date) + "\n" + "Data sosire: " + String(props.parentProps.arival_date)
-
-             }
             const depGraphic = new Graphic({
                 geometry: props.depPoint,
-                symbol: fillSymbol,
-                attributes: attributes,
-                popupTemplate: popupTemplate
+                symbol: fillSymbol
             });
 
             const intGraphic = new Graphic({
@@ -59,8 +53,6 @@ const TruckHelper = (props) => {
                 returnDirections: true
             });
 
-            props.parentProps.view.graphics.add(depGraphic);
-
             route.solve(routeUrl, routeParamsDepInt)
                 .then(function(data) {
                     data.routeResults.forEach(function(result){
@@ -70,6 +62,8 @@ const TruckHelper = (props) => {
                             width: 3
                         };
                         props.parentProps.view.graphics.add(result.route);
+                        setDepIntRouteGraphic(result.route);
+                        setDepIntPath(result.route.geometry.paths[0]);
                     })
                 });
             
@@ -82,6 +76,8 @@ const TruckHelper = (props) => {
                             width: 3
                         };
                         props.parentProps.view.graphics.add(result.route);
+                        setIntArivalRouteGraphic(result.route);
+                        setIntArivalPath(result.route.geometry.paths[0]);
                     })
                 });
 
@@ -92,7 +88,11 @@ const TruckHelper = (props) => {
         };
     }, []);
 
-    return null;
+    return (
+        <div>
+            { depIntPath && intArivalPath && depIntRouteGraphic && intArivalRouteGraphic && <TruckMovement path={depIntPath.concat(intArivalPath)} view={props.parentProps.view} depIntRouteGraphic={depIntRouteGraphic} intArivalRouteGraphic={intArivalRouteGraphic} c_id={props.parentProps.c_id} t_id={props.parentProps.id} dep_place={props.parentProps.dep_place} arival_place={props.parentProps.arival_place} dep_date={props.parentProps.dep_date} arival_date={props.parentProps.arival_date}/>}
+        </div>
+    );
 }
 
 export default TruckHelper;
