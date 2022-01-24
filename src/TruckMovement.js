@@ -6,6 +6,7 @@ const TruckMovement = (props) => {
     const [lastTruckPointGraphic, setLastTruckPointGraphic] = useState(null);
     const [truckPointIndex, setTruckPointIndex] = useState(0);
     const [timer, setTimer] = useState(new Date());
+    const [finished, setFinished] = useState(0);
 
     useEffect(() => {
         loadModules(["esri/Graphic"]).then(([Graphic]) => {
@@ -21,6 +22,17 @@ const TruckMovement = (props) => {
                     size: "8px"
                 };
 
+                const popupTemplate = {
+                    title: "{Name}",
+                    content: "{Description}"
+                 }
+                 const attributes = {
+                    Name: "Camion " + String(props.t_id),
+                    Description:   "De la: " + String(props.dep_place) + "\n" + "La: " + String(props.arival_place) + "\n" +
+                     "Data plecare: " + String(props.dep_date) + "\n" + "Data sosire: " + String(props.arival_date)
+    
+                 }
+
                 const truckPoint = {
                     type: "point",
                     longitude: currentTruckPoint[0],
@@ -29,7 +41,9 @@ const TruckMovement = (props) => {
 
                 const truckPointGraphic = new Graphic({
                     geometry: truckPoint,
-                    symbol: fillSymbol
+                    symbol: fillSymbol,
+                    attributes: attributes,
+                    popupTemplate: popupTemplate
                 });
 
                 props.view.graphics.add(truckPointGraphic);
@@ -37,11 +51,22 @@ const TruckMovement = (props) => {
             }
 
             setCurrentTruckPoint(props.path[truckPointIndex]);
-            if(truckPointIndex + 25 > props.path.length){
+            if(truckPointIndex + 100 > props.path.length){
                 setTruckPointIndex(props.path.length - 1);
+                props.view.graphics.remove(props.depIntRouteGraphic);
+                props.view.graphics.remove(props.intArivalRouteGraphic);
+                props.view.graphics.remove(lastTruckPointGraphic);
+                fetch('http://localhost:8080/finishContract', {
+                    method: 'POST',
+                    headers: {
+                    'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({id: props.c_id})
+                })
+                setFinished(1);
             }
             else{
-                setTruckPointIndex(truckPointIndex + 25);
+                setTruckPointIndex(truckPointIndex + 100);
             }
 
         })
@@ -50,8 +75,10 @@ const TruckMovement = (props) => {
     useEffect(() => {
         const interval = setInterval(() => {
            console.log('This will run every second!');
-           setTimer(new Date());
-        }, 1000);
+           if(!finished){
+            setTimer(new Date());
+           }
+        }, 5000);
      
         // This is important, you must clear your interval when component unmounts
         return () => clearInterval(interval);
