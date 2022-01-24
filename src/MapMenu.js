@@ -37,7 +37,7 @@ return (
             }
             {
             freeTrucks.map((item) => (
-                <FreeTruck dep_place={item.dep_place} arival_place={item.arival_place} arival_date={item.arival_date} dep_date={item.dep_date} id={item.transporter}/>
+                <FreeTruck dep_place={item.dep_place} arival_place={item.arival_place} arival_date={item.arival_date} dep_date={item.dep_date} t_id={item.t_id}/>
                 ))
             }
             </Map>
