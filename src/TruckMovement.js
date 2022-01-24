@@ -29,7 +29,8 @@ const TruckMovement = (props) => {
                  const attributes = {
                     Name: "Camion " + String(props.t_id),
                     Description:   "De la: " + String(props.dep_place) + "\n" + "La: " + String(props.arival_place) + "\n" +
-                     "Data plecare: " + String(props.dep_date) + "\n" + "Data sosire: " + String(props.arival_date)
+                     "Data plecare: " + String(props.dep_date) + "\n" + "Data sosire: " + String(props.arival_date) + "\n" +
+                     "Stare Camion: Ocupat"
     
                  }
 
